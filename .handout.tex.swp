@@ -1,0 +1,58 @@
+\documentclass{mywork}
+\addtolength{\headheight}{\baselineskip}
+\lhead{Harmonische Analysis\\ \today}
+\chead{Schrödingeroperatoren mit periodischen Potentialen}
+\rhead{\theauthor}
+\renewcommand{\theta}{\vartheta}
+\newcommand{\D}{\mathbb{D}}
+\cfoot[LE,RO]{\bfseries\color{gray} -~\thepage~-}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+\begin{document}
+\section{Einführung und Motivation}
+
+Sei also im folgenden $\Lambda \subset \R^n$ ein Gitter und $\Lambda^\circ= \{\xi \in \R^n: \forall_{x\in \Lambda} \xi \cdot x \in \Z\}$ das zugehörige duale Gitter. Im folgenden möchten wir Schrödinger-Operatoren 
+$$ A=- \Delta + V$$
+mit periodischen Potential $V\in C_{\text{per}}(\Omega)$ untersuchen, wobei $\Omega \subset \R^n$ eine Translationszelle des Gitters $\Lambda$ entspricht.   Weiter sei $\Xi= \R^n/ \Lambda^\circ= \hat \Lambda$ die zu $\Lambda$ duale Gruppe und $\Omega\subset \R^n$ eine Translationszelle des Gitters $\Lambda$.
+
+Ein Beispiel ist das \emph{Modell der quasifreien Elektronen} auch \emph{Bloch-Theorie} genannt.  Dieses erweitert das Modell  der freien Elektronen, indem man von periodischen elektrischen Potentialen ausgeht. Man stellt fest, dass das Spektrum des Schrödiger-Operators nur aus wesentliches Spektrum besteht und aus Intervallen besteht.  Damit unterscheidet man zwischen zulässigen und verbotenen Bereichen (\emph{Bändermodell}).  Die Abstände zwischen zulässigen Bereichen sind die sogenannten Bandlücken.   Durch äußere Anregung (beispielsweise Temperatur- oder Lichtzufuhr) können diese überwunden werden und die Leitfähigkeit des Gittermaterials steigt.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\textwidth]{../band.png}
+\caption{Bänderschema anhand Näherung des quasifreien Elektrons im Eindimensionalen. Die Energiewerte in Abhängigkeit vom Wellenvektor skizziert. Für Näheres siehe zum Beispiel \emph{Festkörperphysik} von Harald Ibach und Hans Lüth.}
+\end{figure}
+
+\section{Zerlegung von Operatoren}
+Sei $\mathcal H'$ ein seperabler Hilbertraum. So sagen wir $\mathcal H = L^2(M, \, \dx[\mu], \mathcal H')$ ist ein \emph{constant fiber direct integral} und schreiben
+$$
+\mathcal H = \int_{M}^\oplus  \mathcal H' \, \dx[\mu].
+$$
+Die Betonung soll hierbei auf den \emph{fibers} $\mathcal H'$ liegen. $L^\infty(M, \, \dx[\mu]; \mathcal L(\mathcal H')$ soll den Raum der (Äquivalenzklassen der fast überall gleichen) schwach messbaren Funktionen von $\Xi$ nach $\mathcal L(\mathcal H')$ mit
+$$
+\|A\|_{\infty}= \esssup\|A(m)\|_{L(\mathcal H')} < \infty.
+$$ 
+
+\begin{df}
+Ein beschränkter Operator auf $H= \int_M^\oplus \mathcal H'\, \dx[\mu]$ ist \emph{zerlegbar} durch eine \emph{direct integral decomposition} genau dann wenn es eine Funktion $A(\cdot)$ in $L^\infty(M, \, \dx[\mu], \mathcal L(\mathcal H'))$ gibt, so dass für alle $\psi \in \mathcal H$
+$$
+(A\psi)(m)=A(m) \psi(m), \quad m\in M
+$$
+gilt. Die $A(m)$ werden dann auch als \emph{fibers} von $A$ bezeichnet.
+\end{df}
+Entsprechend lässt sich dies auch auf selbstadjungierte (unbeschränkte) Operatoren erweitern.
+\begin{df}
+Eine Funktion $A(\cdot)$ von $M$ zu einem selbstajungierten Operator auf einem Hilbertraum $\mathcal H'$ heißt messbar, wenn die $(A(\cdot)+i)^{-1}$ messbar ist. So definiert man einen Operator $A$ auf $\mathcal H=\int_{M}^\oplus \mathcal H'$ durch
+\begin{gather*}
+(A\psi)(m)=A(m) \psi(m)\\
+D(A)=\left \{\psi \in \mathcal H| \psi(m) \in D(A(m))\; \text{f.ü.}; \int_M \| A(m)\psi(m)\|^2 \, \dx[\mu](m) < \infty \right \}
+\end{gather*}
+und schreiben $A= \int_M^\oplus A(m) \, \dx[\mu]$.
+\end{df}
+\begin{thebibliography}{tief}
+\bibitem{1} Robert L. Devaney: {\it An Introduction to Chaotic Dynamical Systems}. Second Edition.
+                     Addison-Wesley Publishing Company, 1989.
+\bibitem{2} John Milnor: {\it Dynamics in one Complex Variable - Introductory Lectures}.  arXiv:math/9201272v1 [math.Ds], 20 April 1990.
+\end{thebibliography} 
+
+\end{document}
