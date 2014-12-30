@@ -9,13 +9,48 @@
 \DeclareMathOperator*{\esssup}{ess\,sup}
 
 \begin{document}
-\section{Einführung und Motivation}
 
+\begin{titlepage}
+
+\begin{center}
+
+
+% Oberer Teil der Titelseite:
+
+\textsc{\LARGE University of Stuttgart}\\[1.5cm]
+
+\textsc{\Large Harmonische Analysis}\\[0.5cm]
+
+
+% Title
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\HRule \\[0.4cm]
+{ \huge \bfseries Schrödingeroperatoren mit periodischen Potentitale}\\[0.4cm]
+
+\HRule \\[1.5cm]
+
+% Author and supervisor
+
+\begin{center} \Large
+Matthias Hofmann
+\end{center}
+
+\hfill
+
+\vfill
+
+% Unterer Teil der Seite
+{\large \today}
+
+\end{center}
+
+\end{titlepage}
+\section{Einführung und Motivation}
 Sei also im folgenden $\Lambda \subset \R^n$ ein Gitter und $\Lambda^\circ= \{\xi \in \R^n: \forall_{x\in \Lambda} \xi \cdot x \in \Z\}$ das zugehörige duale Gitter. Im folgenden möchten wir Schrödinger-Operatoren 
 $$ A=- \Delta + V$$
 mit periodischen Potential $V\in C_{\text{per}}(\Omega)$ untersuchen, wobei $\Omega \subset \R^n$ eine Translationszelle des Gitters $\Lambda$ entspricht.   Weiter sei $\Xi= \R^n/ \Lambda^\circ= \hat \Lambda$ die zu $\Lambda$ duale Gruppe und $\Omega\subset \R^n$ eine Translationszelle des Gitters $\Lambda$.
 
-Ein Beispiel ist das \emph{Modell der quasifreien Elektronen} auch \emph{Bloch-Theorie} genannt.  Dieses erweitert das Modell  der freien Elektronen, indem man von periodischen elektrischen Potentialen ausgeht. Man stellt fest, dass das Spektrum des Schrödiger-Operators nur aus wesentliches Spektrum besteht und aus Intervallen besteht.  Damit unterscheidet man zwischen zulässigen und verbotenen Bereichen (\emph{Bändermodell}).  Die Abstände zwischen zulässigen Bereichen sind die sogenannten Bandlücken.   Durch äußere Anregung (beispielsweise Temperatur- oder Lichtzufuhr) können diese überwunden werden und die Leitfähigkeit des Gittermaterials steigt.
+Ein Beispiel ist das \emph{Modell der quasifreien Elektronen} auch \emph{Bloch-Theorie} genannt.  Dieses erweitert das Modell  der freien Elektronen, indem man von periodischen elektrischen Potentialen ausgeht. Man stellt fest, dass das Spektrum des Schrödiger-Operators nur aus wesentliches Spektrum besteht und aus Intervallen besteht.  Damit unterscheidet man zwischen zulässigen und verbotenen Bereichen (\emph{Bändermodell}).  Die Abstände zwischen zulässigen Bereichen sind die sogenannten Bandlücken.   Durch äußere Anregung (beispielsweise durch Temperatur- oder Lichtzufuhr) können diese überwunden werden und die Leitfähigkeit des Gittermaterials steigt.
 
 \begin{figure}[H]
 \centering
@@ -23,7 +58,7 @@ Ein Beispiel ist das \emph{Modell der quasifreien Elektronen} auch \emph{Bloch-T
 \caption{Bänderschema anhand Näherung des quasifreien Elektrons im Eindimensionalen. Die Energiewerte in Abhängigkeit vom Wellenvektor skizziert. Für Näheres siehe zum Beispiel \emph{Festkörperphysik} von Harald Ibach und Hans Lüth.}
 \end{figure}
 
-\section{Zerlegung von Operatoren}
+\section{Symmetrie-Zerlegung von Operatoren}
 Sei $\mathcal H'$ ein seperabler Hilbertraum. So sagen wir $\mathcal H = L^2(M, \, \dx[\mu], \mathcal H')$ ist ein \emph{constant fiber direct integral} und schreiben
 $$
 \mathcal H = \int_{M}^\oplus  \mathcal H' \, \dx[\mu].
@@ -42,13 +77,38 @@ gilt. Die $A(m)$ werden dann auch als \emph{fibers} von $A$ bezeichnet.
 \end{df}
 Entsprechend lässt sich dies auch auf selbstadjungierte (unbeschränkte) Operatoren erweitern.
 \begin{df}
-Eine Funktion $A(\cdot)$ von $M$ zu einem selbstajungierten Operator auf einem Hilbertraum $\mathcal H'$ heißt messbar, wenn die $(A(\cdot)+i)^{-1}$ messbar ist. So definiert man einen Operator $A$ auf $\mathcal H=\int_{M}^\oplus \mathcal H'$ durch
+Eine Funktion $A(\cdot)$ von $M$ zu einem selbstajungierten Operator auf einem Hilbertraum $\mathcal H'$ heißt messbar, wenn die $(A(\cdot)+i)^{-1}$ schwach messbar ist. So definiert man einen Operator $A$ auf $\mathcal H=\int_{M}^\oplus \mathcal H'$ durch
 \begin{gather*}
 (A\psi)(m)=A(m) \psi(m)\\
 D(A)=\left \{\psi \in \mathcal H| \psi(m) \in D(A(m))\; \text{f.ü.}; \int_M \| A(m)\psi(m)\|^2 \, \dx[\mu](m) < \infty \right \}
 \end{gather*}
 und schreiben $A= \int_M^\oplus A(m) \, \dx[\mu]$.
 \end{df}
+In Beispiel 3.4.12 wurde die sogenannte \emph{Floquet-Bloch-Zerlegung} skizziert.  Mit der Bloch-Transformation
+\[
+f_\xi(x)= \sum_{y\in \Lambda} f(x-y) e^{2\pi i \xi \cdot y}, \quad x \in \Omega, \quad \xi \in \Xi
+\]
+ergibt sich die Isomorphie $L^2(\R^n) = L^2(\Xi, \frac{\dx[\xi]}{|\Xi|}, L^2(\Omega))$, also
+\[
+L^2(\R^n) = \int_\Xi^\oplus L^2(\Omega) \;\frac{\dx[\xi]}{|\Xi|}.
+\]
+In folgenden wollen wir bezüglich diesem \emph{constant fiber direct integral} eine Zerlegung des Schrödinger-Operators durchführen.  
+
+Hierzu benötigen wir ein kleines Lemma
+\begin{lem}
+Sei $A=\int_{M}^\oplus A(m) \, \dx[\mu]$ und $B=\int_{M}^\oplus B(m)\, \dx[\mu]$ und $A(m)$ selbstadjungiert für jedes $m\in M$. Falls weiter $B$ selbstadjungiert, $B$ $A$-beschränkt mit Schranke $a$ ist, so folgt, dass $B(m)$ ist fast überall $A(m)$-beschränkt  mit Schrnake $a(m)\le a$. Falls $a<1$, so ist
+\[
+A+B = \int_M^\oplus (A(m)+B(m))\, \dx[\mu]
+\]
+selbstadjungiert auf $D(A)$ und insbesondere auch $A(m)+B(m)$ für fast alle $m\in M$ selbstadjungiert.  
+\end{lem}
+
+Wir wollen also zunächst den Laplace-Operator $-\Delta$ betrachten.
+\begin{lem}
+
+\end{lem}
+
+
 \begin{thebibliography}{tief}
 \bibitem{1} Robert L. Devaney: {\it An Introduction to Chaotic Dynamical Systems}. Second Edition.
                      Addison-Wesley Publishing Company, 1989.
