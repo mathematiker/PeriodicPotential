@@ -7,7 +7,8 @@
 \newcommand{\D}{\mathbb{D}}
 \cfoot[LE,RO]{\bfseries\color{gray} -~\thepage~-}
 \DeclareMathOperator*{\esssup}{ess\,sup}
-
+\DeclareMathOperator*{\Ran}{Ran}
+\usepackage{dsfont}
 \begin{document}
 
 \begin{titlepage}
@@ -17,7 +18,7 @@
 
 % Oberer Teil der Titelseite:
 
-\textsc{\LARGE University of Stuttgart}\\[1.5cm]
+\textsc{\LARGE Universität Stuttgart}\\[1.5cm]
 
 \textsc{\Large Harmonische Analysis}\\[0.5cm]
 
@@ -84,30 +85,100 @@ D(A)=\left \{\psi \in \mathcal H| \psi(m) \in D(A(m))\; \text{f.ü.}; \int_M \| 
 \end{gather*}
 und schreiben $A= \int_M^\oplus A(m) \, \dx[\mu]$.
 \end{df}
-In Beispiel 3.4.12 wurde die sogenannte \emph{Floquet-Bloch-Zerlegung} skizziert.  Mit der Bloch-Transformation
+In Beispiel 3.4.12 wurde die sogenannte \emph{Floquet-Bloch-Zerlegung} skizziert.  Mit der Bloch-Transformation $U: L^2(\R^n)\ni f \mapsto f_\xi\in L^2(\Xi, \frac{\dx[\xi]}{|\Xi|}, L^2(\Omega))$ gegeben durch
 \[
 f_\xi(x)= \sum_{y\in \Lambda} f(x-y) e^{2\pi i \xi \cdot y}, \quad x \in \Omega, \quad \xi \in \Xi
 \]
-ergibt sich die Isomorphie $L^2(\R^n) = L^2(\Xi, \frac{\dx[\xi]}{|\Xi|}, L^2(\Omega))$, also
+ergibt sich die isometrische Isomorphie $L^2(\R^n) = L^2(\Xi, \frac{\dx[\xi]}{|\Xi|}, L^2(\Omega))$, also
 \[
 L^2(\R^n) = \int_\Xi^\oplus L^2(\Omega) \;\frac{\dx[\xi]}{|\Xi|}.
 \]
 In folgenden wollen wir bezüglich diesem \emph{constant fiber direct integral} eine Zerlegung des Schrödinger-Operators durchführen.  
 
 Hierzu benötigen wir ein kleines Lemma
-\begin{lem}
-Sei $A=\int_{M}^\oplus A(m) \, \dx[\mu]$ und $B=\int_{M}^\oplus B(m)\, \dx[\mu]$ und $A(m)$ selbstadjungiert für jedes $m\in M$. Falls weiter $B$ selbstadjungiert, $B$ $A$-beschränkt mit Schranke $a$ ist, so folgt, dass $B(m)$ ist fast überall $A(m)$-beschränkt  mit Schrnake $a(m)\le a$. Falls $a<1$, so ist
-\[
+\begin{lem}\label{kato}
+Sei $A=\int_{M}^\oplus A(m) \, \dx[\mu]$ und $B=\int_{M}^\oplus B(m)\, \dx[\mu]$ und $A(m)$ selbstadjungiert für jedes $m\in M$. So folgt bereits, dass $A$ selbstadjungiert ist. Falls weiter $B$ selbstadjungiert, $B$ $A$-beschränkt mit Schranke $a$ ist, so folgt, dass $B(m)$ fast überall $A(m)$-beschränkt  mit Schrnake $a(m)\le a+ \eps$ ist. Falls $a<1$, so ist
+\begin{equation} \label{sum}
 A+B = \int_M^\oplus (A(m)+B(m))\, \dx[\mu]
-\]
+\end{equation}
 selbstadjungiert auf $D(A)$ und insbesondere auch $A(m)+B(m)$ für fast alle $m\in M$ selbstadjungiert.  
 \end{lem}
+\begin{proof}
+Symmetrie von $A$ ist offensichtlich mit Selbstadjungiertheit der $A(m)$
+\[
+(A\phi, \psi) =  \int_M (A(m) \phi(m), \psi(m))\, \dx[\mu] = \int_M (\phi(m), A(m) \psi(m))\, \dx[\mu]= (\phi, A\psi), \quad \phi, \psi \in D(A).
+\]
+Es genügt damit $\Ran(A\pm i)=H$ zu zeigen.  Setze $C(m)= (A(m)+i)^{-1}$. Leicht folgt mit der Symmetrie von $A$
+\begin{equation}\label{sym}
+\| (A+i)\phi\|^2 = \| A\phi\|^2 + \| \phi\|^2
+\end{equation}
+bzw. $\|(A+i)\phi\|^2 \ge \| \phi\|^2$ und damit $\|C(m)\|\le 1$. Dann ist $C(m)$ schwach messbar und wir können $C=\int_M^\oplus C(m) \, \dx[\mu]$ definieren.  Sei also im Folgenden $\psi = C\eta$ für $\eta \in \mathcal H$, so folgt $\psi(m) \in \Ran C(m) = D(A(m))$ und
+\[
+\|A(m) \psi(m)\| = \|A(m) C(m) \eta(m)\| \le \| \eta(m)\| \in L^2(\dx[\mu])
+\]
+und somit $\psi\in D(A)$.  Weiter ist $(A+i)\psi = \eta$ und somit $\Ran(A+i)=H$. Ähnlich folgt auch dass $(A(m)-i)^{-1} = C(m)^*$ schwach messbar ist und $\Ran(A-i)=H$ und damit Selbstadjungiertheit. Ferner ergibt sich mit $\| B\psi\| \le a \| A\psi\| + b \| \psi\|$, so folgt wegen \eqref{sym} $\| A\psi\|\le \|(A+i)\psi\|$ und damitmmmh...  
+\[
+\| B(A+ik)^{-1}\psi\| \le a\| A(A+ik)^{-1}\psi\| + b \| (A+ik)^{-1} \psi\| 
+\le a \| \psi\|+ bk^{-1} \| \psi\|
+= (a+bk^{-1}) \| \psi\|.    
+\]
+Also $\| B(m) (A(m) +ik)^{-1}\| \le a+bk^{-1}$ und damit ist $B(m)$ fast überall $A(m)$-beschränkt mit Schranke $a(m) \le a$ wegen
+\[
+\|B(m) \phi\| \le (a+bk^{-1}) \| (A(m) +ik)\phi\| \le (a+bk^{-1}) \| A(m) \phi\| + (a+bk^{-1})k \| \phi\|.
+\]
+Die Selbstadjungiertheit folgt mit Kato-Rellich und \eqref{sum} folgt direkt.
+\end{proof}
 
-Wir wollen also zunächst den Laplace-Operator $-\Delta$ betrachten.
-\begin{lem}
-
+Wir wollen also zunächst den Laplace-Operator $-\Delta$ (interpretiert über unser kanonisches Modell) betrachten.
+\begin{lem}\label{laplace}
+Es gilt
+\begin{equation}\label{zerl}
+- \Delta = \int_{\Xi}^\oplus \left ( - \Delta \right )_\xi\, \dx[\xi]
+\end{equation}
+wobei $(-\Delta)_\xi$ der Operator $- \Delta$ auf $\L^2(\Omega)$ mit Randwertbedingungen
+$$
+\phi(x+a_j)=e^{-2\pi i\xi\cdot a_j} \phi(x), \quad \frac{\partial \phi}{\partial y_j} (x+a_j) = e^{-2\pi i \xi\cdot a_j} \frac{\partial \phi}{\partial y_j} (x)
+$$
+sodass $x$ auf geeigneten Seiten auf $\partial \Omega$ liegen, $a_j\in \Lambda\setminus\{0\}$ sodass $x+a_j\in \partial \Omega$, $\xi_j= \xi \cdot a_j$ und $y_j$ die Koordinaten aus $x= \sum_j y_j a_j$ sind.
 \end{lem}
 
+\begin{proof}
+Um \eqref{zerl} zu zeigen, bezeichne man den Operator auf der rechten Seite mit $\tilde A$. Wir zeigen, dass falls $f\in C_c^\infty(\R^n)$, dass dann $Uf\in D(A)$ und $U(- \Delta f)= A(Uf)$.  Da $-\Delta$ wesentlich selbstadjungiert auf $C_c^\infty(\R^n)$ ist und $A$ selbstadjungiert nach letzterem Lemma folgt \eqref{zerl}.  Sei also $f\in C_c^\infty$. Dann folgt $Uf\in C^\infty$, als endliche Summe glatter Funktionen und $(Uf)'_\xi (x) = (Uf')_\xi (x)$.  Weiter ergibt sich mit der Translationsinvarianz des Gitters
+\[
+(Uf)_\xi (x+a_j) = \sum_{y\in \Lambda}  f(x+ a_j-y)e^{2\pi i \xi \cdot y}= \sum_{y\in \Lambda}  f(x-y) e^{2\pi i \xi \cdot (y-a_j)}= e^{-2\pi i\xi\cdot a_j} (Uf)_\xi (x).
+\]  
+Ähnlich zeigt auch $(Uf)'_\xi (x+a_j) = e^{-2\pi i \xi \cdot a_j} (Uf)'_\xi (x)$ und somit folgt für jedes $\xi \in \Xi$ auch schon $(Uf)_\xi \in D((-\Delta)_\xi )$ und
+\[
+(A(Uf))_\xi=\left ( - \Delta \right )_\xi (Uf)_\xi = (U(- \Delta f))_\xi
+\]
+und somit $Uf \in D(A)$. Dann folgt wie oben angemerkt \eqref{zerl}.
+\end{proof}
+
+\begin{st}
+Sei $V\in C_{\text{per}}(\Omega)$ mit $\Omega\subset \R^n$. Sei für $\xi \in \Xi$
+\[
+H(\xi) = ( - \Delta)_\xi + V
+\]
+als Operator auf $L^2(\Omega)$. So ergibt sich \emph{direct integral decomposition}
+\[
+- \Delta +V= \int_\Xi^\oplus H(\xi) \frac{\mathrm d\xi}{|\Xi|}
+\]
+\end{st}
+\begin{proof}
+Der Multiplikationsoperator $V$ ist beschränkt und damit insbesondere $(-\Delta)$ beschränkt mit relativer Schranke $0$. Damit genügt nach Lemma \ref{kato} und Lemma \ref{laplace} zu zeigen
+\[
+U V U^{-1} = \int_\Xi^\oplus H(\xi) \frac{\dx[\xi]}{|\Xi|}.
+\]
+Für $f\in C_c^\infty$ ergibt sich nämlich
+\[
+(UVf)_\xi(x) = \sum_{y\in \Lambda} e^{-in \xi} V(x+y) f(x+y)= V(x) \sum_{y\in \Lambda} e^{-in \xi} f(x+y)= V_\xi(Uf)_\xi (x)
+\]
+und in vollkommener Analogie zu vorher ergibt sich die Aussage.
+\end{proof}
+\begin{nt}
+Das Resultat lässt sich verallgemeinern in beliebigen Dimensionen. Exemplarisch sei hierzu angemerkt: Angenommen $V\in L^2(\R^n)+L^\infty(\R^n)$ für $n\le 3$ so folgt mit den Sobolevschen Sätzen die $(-\Delta)$-Beschränktheit mit relativer Schranke $0$ und mit entsprechender Argumentation ergibt sich die Zerlegung.
+\end{nt}
+Für den Rest des Vortrages wollen wir uns auf den eindimensionalen Fall beschränken.
 
 \begin{thebibliography}{tief}
 \bibitem{1} Robert L. Devaney: {\it An Introduction to Chaotic Dynamical Systems}. Second Edition.
