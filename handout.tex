@@ -97,7 +97,7 @@ In folgenden wollen wir bezüglich diesem \emph{constant fiber direct integral} 
 
 Hierzu benötigen wir ein kleines Lemma
 \begin{lem}\label{kato}
-Sei $A=\int_{M}^\oplus A(m) \, \dx[\mu]$ und $B=\int_{M}^\oplus B(m)\, \dx[\mu]$ und $A(m)$ selbstadjungiert für jedes $m\in M$. So folgt bereits, dass $A$ selbstadjungiert ist. Falls weiter $B$ selbstadjungiert, $B$ $A$-beschränkt mit Schranke $a$ ist, so folgt, dass $B(m)$ fast überall $A(m)$-beschränkt  mit Schrnake $a(m)\le a+ \eps$ ist. Falls $a<1$, so ist
+Sei $A=\int_{M}^\oplus A(m) \, \dx[\mu]$ und $B=\int_{M}^\oplus B(m)\, \dx[\mu]$ und $A(m)$ selbstadjungiert für jedes $m\in M$. So folgt bereits, dass $A$ selbstadjungiert ist. Falls weiter $B$ selbstadjungiert, $B$ $A$-beschränkt mit Schranke $a$ ist, so folgt, dass $B(m)$ fast überall $A(m)$-beschränkt  mit Schranke $a(m)\le a+ \eps$ ist. Falls $a<1$, so ist
 \begin{equation} \label{sum}
 A+B = \int_M^\oplus (A(m)+B(m))\, \dx[\mu]
 \end{equation}
@@ -126,7 +126,11 @@ Also $\| B(m) (A(m) +ik)^{-1}\| \le a+bk^{-1}$ und damit ist $B(m)$ fast überal
 \[
 \|B(m) \phi\| \le (a+bk^{-1}) \| (A(m) +ik)\phi\| \le (a+bk^{-1}) \| A(m) \phi\| + (a+bk^{-1})k \| \phi\|.
 \]
-Die Selbstadjungiertheit folgt mit Kato-Rellich und \eqref{sum} folgt direkt.
+Die Selbstadjungiertheit folgt mit Kato-Rellich und \eqref{sum} folgt direkt. Die Messbarkeit ergibt sich im Wesentlichen (etwas einfacher für $B(\cdot)\in L^\infty(M, \, \dx[\mu], \mathcal L(\mathcal H'))$) aus
+\begin{equation}\label{trick}
+(A(m)+B(m)+\lambda) = (1+ B(m)(A(m)+\lambda)^{-1})(A(m)+ \lambda), \quad \lambda \in \mathrm i \R
+\end{equation}
+und Darstellung der Inversen durch Neumannreihe. 
 \end{proof}
 
 Wir wollen also zunächst den Laplace-Operator $-\Delta$ (interpretiert über unser kanonisches Modell) betrachten.
@@ -135,7 +139,7 @@ Es gilt
 \begin{equation}\label{zerl}
 - \Delta = \int_{\Xi}^\oplus \left ( - \Delta \right )_\xi\, \dx[\xi]
 \end{equation}
-wobei $(-\Delta)_\xi$ der Operator $- \Delta$ auf $\L^2(\Omega)$ mit Randwertbedingungen
+wobei $(-\Delta)_\xi$ der Operator $- \Delta$ auf $L^2(\Omega)$ mit Randwertbedingungen
 $$
 \phi(x+a_j)=e^{-2\pi i\xi\cdot a_j} \phi(x), \quad \frac{\partial \phi}{\partial y_j} (x+a_j) = e^{-2\pi i \xi\cdot a_j} \frac{\partial \phi}{\partial y_j} (x)
 $$
@@ -149,9 +153,9 @@ Um \eqref{zerl} zu zeigen, bezeichne man den Operator auf der rechten Seite mit 
 \]  
 Ähnlich zeigt auch $(Uf)'_\xi (x+a_j) = e^{-2\pi i \xi \cdot a_j} (Uf)'_\xi (x)$ und somit folgt für jedes $\xi \in \Xi$ auch schon $(Uf)_\xi \in D((-\Delta)_\xi )$ und
 \[
-(A(Uf))_\xi=\left ( - \Delta \right )_\xi (Uf)_\xi = (U(- \Delta f))_\xi
+(\tilde A(Uf))_\xi=\left ( - \Delta \right )_\xi (Uf)_\xi = (U(- \Delta f))_\xi
 \]
-und somit $Uf \in D(A)$. Dann folgt wie oben angemerkt \eqref{zerl}.
+und somit $Uf \in D(\tilde A)$. Dann folgt wie oben angemerkt \eqref{zerl}.
 \end{proof}
 
 \begin{st}
@@ -159,7 +163,7 @@ Sei $V\in C_{\text{per}}(\Omega)$ mit $\Omega\subset \R^n$. Sei für $\xi \in \X
 \[
 H(\xi) = ( - \Delta)_\xi + V
 \]
-als Operator auf $L^2(\Omega)$. So ergibt sich \emph{direct integral decomposition}
+als Operator auf $L^2(\Omega)$. So ergibt sich die \emph{direct integral decomposition}
 \[
 - \Delta +V= \int_\Xi^\oplus H(\xi) \frac{\mathrm d\xi}{|\Xi|}
 \]
@@ -167,18 +171,32 @@ als Operator auf $L^2(\Omega)$. So ergibt sich \emph{direct integral decompositi
 \begin{proof}
 Der Multiplikationsoperator $V$ ist beschränkt und damit insbesondere $(-\Delta)$ beschränkt mit relativer Schranke $0$. Damit genügt nach Lemma \ref{kato} und Lemma \ref{laplace} zu zeigen
 \[
-U V U^{-1} = \int_\Xi^\oplus H(\xi) \frac{\dx[\xi]}{|\Xi|}.
+U V U^{-1} = \int_\Xi^\oplus V \frac{\dx[\xi]}{|\Xi|}.
 \]
-Für $f\in C_c^\infty$ ergibt sich nämlich
+Für $f\in C_c^\infty$ ergibt sich nämlich wegen der Periodizität
 \[
-(UVf)_\xi(x) = \sum_{y\in \Lambda} e^{-in \xi} V(x+y) f(x+y)= V(x) \sum_{y\in \Lambda} e^{-in \xi} f(x+y)= V_\xi(Uf)_\xi (x)
+(UVf)_\xi(x) = \sum_{y\in \Lambda} e^{-in \xi} V(x+y) f(x+y)= V(x) \sum_{y\in \Lambda} e^{-in \xi} f(x+y)= V(Uf)_\xi (x)
 \]
 und in vollkommener Analogie zu vorher ergibt sich die Aussage.
 \end{proof}
 \begin{nt}
 Das Resultat lässt sich verallgemeinern in beliebigen Dimensionen. Exemplarisch sei hierzu angemerkt: Angenommen $V\in L^2(\R^n)+L^\infty(\R^n)$ für $n\le 3$ so folgt mit den Sobolevschen Sätzen die $(-\Delta)$-Beschränktheit mit relativer Schranke $0$ und mit entsprechender Argumentation ergibt sich die Zerlegung.
 \end{nt}
-Für den Rest des Vortrages wollen wir uns auf den eindimensionalen Fall beschränken.
+%Für den Rest des Vortrages wollen wir uns auf den eindimensionalen Fall beschränken.
+
+\section{Spektrum der Zerlegung}
+Zunächst lässt sich feststellen, dass $(-\Delta)_\xi$ eine Basis aus Eigenvektoren besitzt, nämlich
+\[
+\psi_k(\xi; y) = (2\pi)^{-n/2} \exp \left [ i \sum_{j=1}^n (\xi_j + 2\pi k_j) y_j \right ], \quad k_j \in \Z^n
+\]
+und besitzt somit kompakte Resolvente.  Entsprechendes folgt für $H(\xi)$ (vgl. \eqref{trick}). Insbesondere ist das Spektrum der $H(\xi)$ diskret.
+
+Und weiter folgt mit folgendem Satz, dass $- \Delta$ jedoch nur aus wesentlich Spektrum besteht. 
+\begin{thm}
+Sei $(M, \dx[\mu])$ das Intervall $[0,1]$ mit Lebesgue-Maß und sei $\mathcal H'$ ein fester seperabler unendlich-dimensional Vektorraum mit $A=\int_[0,1]^\oplus A(m) \, \dx[\mu](m)$ mit $A(m)$ selbstadjungiert. Angenommen wir haben $\mathcal H'$-wertige Eigenfunktionen $\{\psi_n(\cdot)\}$ auf $[0,1]$ reell analytisch auf $(0,1)$ und stetig fortsetzbar auf $[0,1]$ und dazu analytisch abhängende Eigenwerte $E_n(\cdot)$ die für jedes $m$ eine vollständige Orthonormalbasis auf $\mathcal H'$ bilden, dann besteht $A$ nur aus wesentlichen Spektrum.
+\end{thm}
+Für den eindimensionalen Fall lässt sich dies zurückführen auf eine Halbgruppeneigenschaft. Im mehrdimensionalen nutzt man aus, dass eine Zerlegung mit Operatoren mit ausschließlich wesentlichem Spektrum widerum nur aus wesentlich Spektrum besteht.
+ 
 
 \begin{thebibliography}{tief}
 \bibitem{1} Robert L. Devaney: {\it An Introduction to Chaotic Dynamical Systems}. Second Edition.
