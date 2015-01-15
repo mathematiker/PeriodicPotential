@@ -6,8 +6,10 @@
 \renewcommand{\theta}{\vartheta}
 \newcommand{\D}{\mathbb{D}}
 \cfoot[LE,RO]{\bfseries\color{gray} -~\thepage~-}
+\DeclareMathOperator*{\esssupp}{ess\,supp}
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator*{\Ran}{Ran}
+\renewcommand{\eqref}[1]{(\ref{#1})}
 \usepackage{dsfont}
 \begin{document}
 
@@ -26,7 +28,7 @@
 % Title
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \HRule \\[0.4cm]
-{ \huge \bfseries Schrödingeroperatoren mit periodischen Potentitale}\\[0.4cm]
+{ \huge \bfseries Schrödingeroperatoren mit periodischen Potentialen}\\[0.4cm]
 
 \HRule \\[1.5cm]
 
@@ -56,7 +58,7 @@ Ein Beispiel ist das \emph{Modell der quasifreien Elektronen} auch \emph{Bloch-T
 \begin{figure}[H]
 \centering
 \includegraphics[width=.5\textwidth]{../band.png}
-\caption{Bänderschema anhand Näherung des quasifreien Elektrons im Eindimensionalen. Die Energiewerte in Abhängigkeit vom Wellenvektor skizziert. Für Näheres siehe zum Beispiel \emph{Festkörperphysik} von Harald Ibach und Hans Lüth.}
+\caption{Bänderschema anhand Näherung des quasifreien Elektrons im Eindimensionalen. Die Energiewerte in Abhängigkeit vom Wellenvektor skizziert. Für Näheres siehe zum Beispiel \emph{Festkörperphysik} von Harald Ibach und Hans Lüth. Bildquelle: \emph{Festkörperphysik} von Harald Ibach und Hans Lüth.}
 \end{figure}
 
 \section{Symmetrie-Zerlegung von Operatoren}
@@ -64,7 +66,7 @@ Sei $\mathcal H'$ ein seperabler Hilbertraum. So sagen wir $\mathcal H = L^2(M, 
 $$
 \mathcal H = \int_{M}^\oplus  \mathcal H' \, \dx[\mu].
 $$
-Die Betonung soll hierbei auf den \emph{fibers} $\mathcal H'$ liegen. $L^\infty(M, \, \dx[\mu]; \mathcal L(\mathcal H')$ soll den Raum der (Äquivalenzklassen der fast überall gleichen) schwach messbaren Funktionen von $\Xi$ nach $\mathcal L(\mathcal H')$ mit
+Die Betonung soll hierbei auf den \emph{fibers} $\mathcal H'$ liegen. $L^\infty(M, \, \dx[\mu]; \mathcal L(\mathcal H')$ soll den Raum der (Äquivalenzklassen der fast überall gleichen) schwach messbaren Funktionen von $M$ nach $\mathcal L(\mathcal H')$ mit
 $$
 \|A\|_{\infty}= \esssup\|A(m)\|_{L(\mathcal H')} < \infty.
 $$ 
@@ -78,7 +80,7 @@ gilt. Die $A(m)$ werden dann auch als \emph{fibers} von $A$ bezeichnet.
 \end{df}
 Entsprechend lässt sich dies auch auf selbstadjungierte (unbeschränkte) Operatoren erweitern.
 \begin{df}
-Eine Funktion $A(\cdot)$ von $M$ zu einem selbstajungierten Operator auf einem Hilbertraum $\mathcal H'$ heißt messbar, wenn die $(A(\cdot)+i)^{-1}$ schwach messbar ist. So definiert man einen Operator $A$ auf $\mathcal H=\int_{M}^\oplus \mathcal H'$ durch
+Eine Funktion $A(\cdot)$ von $M$ in den Raum der selbstadjungierten Operatoren auf einem Hilbertraum $\mathcal H'$ heißt messbar, wenn die $(A(\cdot)+i)^{-1}$ schwach messbar ist. So definiert man einen Operator $A$ auf $\mathcal H=\int_{M}^\oplus \mathcal H'$ durch
 \begin{gather*}
 (A\psi)(m)=A(m) \psi(m)\\
 D(A)=\left \{\psi \in \mathcal H| \psi(m) \in D(A(m))\; \text{f.ü.}; \int_M \| A(m)\psi(m)\|^2 \, \dx[\mu](m) < \infty \right \}
@@ -97,10 +99,10 @@ In folgenden wollen wir bezüglich diesem \emph{constant fiber direct integral} 
 
 Hierzu benötigen wir ein kleines Lemma
 \begin{lem}\label{kato}
-Sei $A=\int_{M}^\oplus A(m) \, \dx[\mu]$ und $B=\int_{M}^\oplus B(m)\, \dx[\mu]$ und $A(m)$ selbstadjungiert für jedes $m\in M$. So folgt bereits, dass $A$ selbstadjungiert ist. Falls weiter $B$ selbstadjungiert, $B$ $A$-beschränkt mit Schranke $a$ ist, so folgt, dass $B(m)$ fast überall $A(m)$-beschränkt  mit Schranke $a(m)\le a+ \eps$ ist. Falls $a<1$, so ist
-\begin{equation} \label{sum}
+Sei $A=\int_{M}^\oplus A(m) \, \dx[\mu]$ und $B=\int_{M}^\oplus B(m)\, \dx[\mu]$ und $A(m), B(m)$ selbstadjungiert für jedes $m\in M$. So folgt bereits, dass $A$ bzw. $B$ selbstadjungiert sind. Sei weiter $D(A(m))\subset D(B(m))$ und $D(A) \subset D(B)$ und  $B$ $A$-beschränkt mit Schranke $a$ ist, so folgt, dass $B(m)$ fast überall $A(m)$-beschränkt  mit relativer Schranke $a(m)\le a$ ist. Falls $a<1$, so ist
+\begin{align} \label{sum}
 A+B = \int_M^\oplus (A(m)+B(m))\, \dx[\mu]
-\end{equation}
+\end{align}
 selbstadjungiert auf $D(A)$ und insbesondere auch $A(m)+B(m)$ für fast alle $m\in M$ selbstadjungiert.  
 \end{lem}
 \begin{proof}
@@ -109,14 +111,19 @@ Symmetrie von $A$ ist offensichtlich mit Selbstadjungiertheit der $A(m)$
 (A\phi, \psi) =  \int_M (A(m) \phi(m), \psi(m))\, \dx[\mu] = \int_M (\phi(m), A(m) \psi(m))\, \dx[\mu]= (\phi, A\psi), \quad \phi, \psi \in D(A).
 \]
 Es genügt damit $\Ran(A\pm i)=H$ zu zeigen.  Setze $C(m)= (A(m)+i)^{-1}$. Leicht folgt mit der Symmetrie von $A$
-\begin{equation}\label{sym}
-\| (A+i)\phi\|^2 = \| A\phi\|^2 + \| \phi\|^2
-\end{equation}
-bzw. $\|(A+i)\phi\|^2 \ge \| \phi\|^2$ und damit $\|C(m)\|\le 1$. Dann ist $C(m)$ schwach messbar und wir können $C=\int_M^\oplus C(m) \, \dx[\mu]$ definieren.  Sei also im Folgenden $\psi = C\eta$ für $\eta \in \mathcal H$, so folgt $\psi(m) \in \Ran C(m) = D(A(m))$ und
+\begin{align}\label{sym}
+\| (A(m)+i)\phi\|^2 = \| A(m)\phi\|^2 + \| \phi\|^2.
+\end{align}
+Es ergeben sich somit die Ungleichungen
+\begin{align*}
+\| (A(m) +i)\phi\| &\ge \| \phi\|^2 &  \|(A(m)+ik)\phi\|&\ge k \|\phi\|, \quad k\in \R\\
+\| (A(m) +i)\phi\| &\ge \| A\phi\|^2 &  \|(A(m)+ik)\phi\|&\ge \|A\phi\|, \quad k\in \R.
+\end{align*}
+Insbesondere also $\|C(m)\|\le 1$. Dann ist $C(m)$ schwach messbar und wir können $C=\int_M^\oplus C(m) \, \dx[\mu]$ definieren.  Sei also im Folgenden $\psi = C\eta$ für $\eta \in \mathcal H$, so folgt $\psi(m) \in \Ran C(m) = D(A(m))$ und
 \[
 \|A(m) \psi(m)\| = \|A(m) C(m) \eta(m)\| \le \| \eta(m)\| \in L^2(\dx[\mu])
 \]
-und somit $\psi\in D(A)$.  Weiter ist $(A+i)\psi = \eta$ und somit $\Ran(A+i)=H$. Ähnlich folgt auch dass $(A(m)-i)^{-1} = C(m)^*$ schwach messbar ist und $\Ran(A-i)=H$ und damit Selbstadjungiertheit. Ferner ergibt sich mit $\| B\psi\| \le a \| A\psi\| + b \| \psi\|$, so folgt wegen \eqref{sym} $\| A\psi\|\le \|(A+i)\psi\|$ und damitmmmh...  
+und somit $\psi\in D(A)$.  Weiter ist $(A+i)\psi = \eta$ und somit $\Ran(A+i)=H$. Ähnlich folgt auch dass $(A(m)-i)^{-1} = C(m)^*$ schwach messbar ist und $\Ran(A-i)=H$ und damit Selbstadjungiertheit. Ferner ergibt sich mit $\| B\psi\| \le a \| A\psi\| + b \| \psi\|$, so folgt wegen \eqref{sym} $\| A\psi\|\le \|(A+i)\psi\|$ und damit
 \[
 \| B(A+ik)^{-1}\psi\| \le a\| A(A+ik)^{-1}\psi\| + b \| (A+ik)^{-1} \psi\| 
 \le a \| \psi\|+ bk^{-1} \| \psi\|
@@ -127,18 +134,18 @@ Also $\| B(m) (A(m) +ik)^{-1}\| \le a+bk^{-1}$ und damit ist $B(m)$ fast überal
 \|B(m) \phi\| \le (a+bk^{-1}) \| (A(m) +ik)\phi\| \le (a+bk^{-1}) \| A(m) \phi\| + (a+bk^{-1})k \| \phi\|.
 \]
 Die Selbstadjungiertheit folgt mit Kato-Rellich und \eqref{sum} folgt direkt. Die Messbarkeit ergibt sich im Wesentlichen (etwas einfacher für $B(\cdot)\in L^\infty(M, \, \dx[\mu], \mathcal L(\mathcal H'))$) aus
-\begin{equation}\label{trick}
+\begin{align}\label{trick}
 (A(m)+B(m)+\lambda) = (1+ B(m)(A(m)+\lambda)^{-1})(A(m)+ \lambda), \quad \lambda \in \mathrm i \R
-\end{equation}
+\end{align}
 und Darstellung der Inversen durch Neumannreihe. 
 \end{proof}
 
 Wir wollen also zunächst den Laplace-Operator $-\Delta$ (interpretiert über unser kanonisches Modell) betrachten.
 \begin{lem}\label{laplace}
 Es gilt
-\begin{equation}\label{zerl}
+\begin{align}\label{zerl}
 - \Delta = \int_{\Xi}^\oplus \left ( - \Delta \right )_\xi\, \dx[\xi]
-\end{equation}
+\end{align}
 wobei $(-\Delta)_\xi$ der Operator $- \Delta$ auf $L^2(\Omega)$ mit Randwertbedingungen
 $$
 \phi(x+a_j)=e^{-2\pi i\xi\cdot a_j} \phi(x), \quad \frac{\partial \phi}{\partial y_j} (x+a_j) = e^{-2\pi i \xi\cdot a_j} \frac{\partial \phi}{\partial y_j} (x)
@@ -147,7 +154,7 @@ sodass $x$ auf geeigneten Seiten auf $\partial \Omega$ liegen, $a_j\in \Lambda\s
 \end{lem}
 
 \begin{proof}
-Um \eqref{zerl} zu zeigen, bezeichne man den Operator auf der rechten Seite mit $\tilde A$. Wir zeigen, dass falls $f\in C_c^\infty(\R^n)$, dass dann $Uf\in D(A)$ und $U(- \Delta f)= A(Uf)$.  Da $-\Delta$ wesentlich selbstadjungiert auf $C_c^\infty(\R^n)$ ist und $A$ selbstadjungiert nach letzterem Lemma folgt \eqref{zerl}.  Sei also $f\in C_c^\infty$. Dann folgt $Uf\in C^\infty$, als endliche Summe glatter Funktionen und $(Uf)'_\xi (x) = (Uf')_\xi (x)$.  Weiter ergibt sich mit der Translationsinvarianz des Gitters
+Um \eqref{zerl} zu zeigen, bezeichne man den Operator auf der rechten Seite mit $\tilde A$\footnote{Wir setzen die Messbarkeit an dieser Stelle voraus,  die Messbarkeit folgt aber aus der Tatsache, dass die Resolvente stetig von $\xi$ abhängt.}. Wir zeigen, dass falls $f\in C_c^\infty(\R^n)$, dass dann $Uf\in D(A)$ und $U(- \Delta f)= A(Uf)$.  Da $-\Delta$ wesentlich selbstadjungiert auf $C_c^\infty(\R^n)$ ist und $A$ selbstadjungiert nach letzterem Lemma folgt \eqref{zerl}\footnote{Offenbar können die $(-\Delta)_\xi$ als selbstadjungierte Operatoren über die Friedrichserweiterung ihres Formbereichs betrachtet werden (vgl. Übungsaufgabe für einen geeigneten Formbereich).}.  Sei also $f\in C_c^\infty$. Dann folgt $Uf\in C^\infty$, als endliche Summe glatter Funktionen und $(Uf)'_\xi (x) = (Uf')_\xi (x)$.  Weiter ergibt sich mit der Translationsinvarianz des Gitters
 \[
 (Uf)_\xi (x+a_j) = \sum_{y\in \Lambda}  f(x+ a_j-y)e^{2\pi i \xi \cdot y}= \sum_{y\in \Lambda}  f(x-y) e^{2\pi i \xi \cdot (y-a_j)}= e^{-2\pi i\xi\cdot a_j} (Uf)_\xi (x).
 \]  
@@ -155,7 +162,7 @@ Um \eqref{zerl} zu zeigen, bezeichne man den Operator auf der rechten Seite mit 
 \[
 (\tilde A(Uf))_\xi=\left ( - \Delta \right )_\xi (Uf)_\xi = (U(- \Delta f))_\xi
 \]
-und somit $Uf \in D(\tilde A)$. Dann folgt wie oben angemerkt \eqref{zerl}.
+und somit $Uf \in D(\tilde A)$. Dann folgt wie oben angemerkt \eqref{zerl}\footnote{Dies folgt aus der Tatsache das selbstadjungierte Erweiterungen von symmetrischen Operatoren deren Abschluss selbstadjungiert sind eindeutig bestimmt sind.}.
 \end{proof}
 
 \begin{st}
@@ -179,29 +186,51 @@ Für $f\in C_c^\infty$ ergibt sich nämlich wegen der Periodizität
 \]
 und in vollkommener Analogie zu vorher ergibt sich die Aussage.
 \end{proof}
-\begin{nt}
-Das Resultat lässt sich verallgemeinern in beliebigen Dimensionen. Exemplarisch sei hierzu angemerkt: Angenommen $V\in L^2(\R^n)+L^\infty(\R^n)$ für $n\le 3$ so folgt mit den Sobolevschen Sätzen die $(-\Delta)$-Beschränktheit mit relativer Schranke $0$ und mit entsprechender Argumentation ergibt sich die Zerlegung.
-\end{nt}
+%\begin{nt}
+%Das Resultat lässt sich verallgemeinern in beliebigen Dimensionen. Exemplarisch sei hierzu angemerkt: Angenommen $V\in L^2(\R^n)+L^\infty(\R^n)$ periodisch für $n\le 3$ so folgt mit den Sobolevschen Sätzen die $(-\Delta)$-Beschränktheit mit relativer Schranke $0$ und mit entsprechender Argumentation ergibt sich die Zerlegung.
+%\end{nt}
 %Für den Rest des Vortrages wollen wir uns auf den eindimensionalen Fall beschränken.
 
 \section{Spektrum der Zerlegung}
 Zunächst lässt sich feststellen, dass $(-\Delta)_\xi$ eine Basis aus Eigenvektoren besitzt, nämlich
 \[
-\psi_k(\xi; y) = (2\pi)^{-n/2} \exp \left [ i \sum_{j=1}^n (\xi_j + 2\pi k_j) y_j \right ], \quad k_j \in \Z^n
+\psi_k(\xi; y) = (2\pi)^{-n/2} \exp \left [ i \sum_{j=1}^n (\xi\cdot a_j + 2\pi k_j) y_j \right ], \quad k_j \in \Z^n
 \]
 und besitzt somit kompakte Resolvente.  Entsprechendes folgt für $H(\xi)$ (vgl. \eqref{trick}). Insbesondere ist das Spektrum der $H(\xi)$ diskret.
 
-Und weiter folgt mit folgendem Satz, dass $- \Delta$ jedoch nur aus wesentlich Spektrum besteht. 
-\begin{thm}
-Sei $(M, \dx[\mu])$ das Intervall $[0,1]$ mit Lebesgue-Maß und sei $\mathcal H'$ ein fester seperabler unendlich-dimensional Vektorraum mit $A=\int_[0,1]^\oplus A(m) \, \dx[\mu](m)$ mit $A(m)$ selbstadjungiert. Angenommen wir haben $\mathcal H'$-wertige Eigenfunktionen $\{\psi_n(\cdot)\}$ auf $[0,1]$ reell analytisch auf $(0,1)$ und stetig fortsetzbar auf $[0,1]$ und dazu analytisch abhängende Eigenwerte $E_n(\cdot)$ die für jedes $m$ eine vollständige Orthonormalbasis auf $\mathcal H'$ bilden, dann besteht $A$ nur aus wesentlichen Spektrum.
-\end{thm}
-Für den eindimensionalen Fall lässt sich dies zurückführen auf eine Halbgruppeneigenschaft. Im mehrdimensionalen nutzt man aus, dass eine Zerlegung mit Operatoren mit ausschließlich wesentlichem Spektrum widerum nur aus wesentlich Spektrum besteht.
+%Und weiter folgt mit folgendem Satz, dass $- \Delta$ jedoch nur aus wesentlich Spektrum besteht. 
+%\begin{thm}
+%Sei $(M, \dx[\mu])$ das Intervall $[0,1]$ mit Lebesgue-Maß und sei $\mathcal H'$ ein fester seperabler unendlich-dimensional Vektorraum mit $A=\int_[0,1]^\oplus A(m) \, \dx[\mu](m)$ mit $A(m)$ selbstadjungiert. Angenommen wir haben $\mathcal H'$-wertige Eigenfunktionen $\{\psi_n(\cdot)\}$ auf $[0,1]$ reell analytisch auf $(0,1)$ und stetig fortsetzbar auf $[0,1]$ und dazu analytisch abhängende Eigenwerte $E_n(\cdot)$ die für jedes $m$ eine vollständige Orthonormalbasis auf $\mathcal H'$ bilden, dann besteht $A$ nur aus wesentlichen Spektrum.
+%\end{thm}
+%Für den eindimensionalen Fall lässt sich dies zurückführen auf eine Halbgruppeneigenschaft. Im mehrdimensionalen nutzt man aus, dass eine Zerlegung mit Operatoren mit ausschließlich wesentlichem Spektrum widerum nur aus wesentlich Spektrum besteht.
  
+Tatsächlich besteht der Operator $A$ nur aus wesentlichen Spektrum.  Denn angenommen $E$ wäre ein Eigenwert endlicher Vielfachheit, so müsste mit der Zerlegung des Operators
+$$
+A(m) \psi(m)=(A \psi)(m) = E \psi(m) 
+$$
+so folgt aber $f(m) \psi(m)$ ist auch Eigenvektor zu $E$ für skalarwertige $f\in L^\infty(\esssupp(\psi))$. Damit ist der Eigenraum zu $E$ unendlichdimensional und ist damit nicht diskret.    
+
+\begin{nt}
+Man kann zeigen 
+$$A= \int_\Xi^\oplus A_\xi \iff (A+i)^{-1} = \int_\Xi^\oplus (A(\xi)+i)^{-1}$$ mit $\| (A+i)^{-1} \| = \esssup \| (A(m)+i)^{-1}\|$. Ferner ergibt sich 
+$$
+\rho(A) = \bigcap_{\xi \in \Xi} \rho(A_\xi)
+$$
+bzw.
+$$
+\sigma(A) = \bigcup_{\xi \in \Xi} \sigma(A_\xi).
+$$
+Man kann zeigen, dass die Eigenwerte $E_n(\xi)$ stetig von $\xi$ abhängen.  Dann folgt sofort, dass der Wertebereich der Eigenwertkurven gerade das Spektrum darstellen.  Dabei sind entweder Eigenwerte die unabhängig von $\xi$ konstant bleiben denkbar, diese besitzen dann aber unendliche Vielfachheit, oder nicht konstante Eigenwertkurven, die somit Teil des stetigen Spektrum gehören (vgl. Abbildung 2).  Aus gewissen Analyzitätsgründen tritt nur der zweite Fall für $V\in C_{\text{per}}(\Omega)$ auf. Das Spektrum ist also absolut stetig.
+\end{nt}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4 \textwidth]{energiespektren.pdf}
+\caption{Das Spektrum ergibt sich gerade als Vereinigung der Eigenwerte der jeweiligen Energiespektren der Zerlegung.}
+\end{figure}
 
 \begin{thebibliography}{tief}
-\bibitem{1} Robert L. Devaney: {\it An Introduction to Chaotic Dynamical Systems}. Second Edition.
-                     Addison-Wesley Publishing Company, 1989.
-\bibitem{2} John Milnor: {\it Dynamics in one Complex Variable - Introductory Lectures}.  arXiv:math/9201272v1 [math.Ds], 20 April 1990.
+\bibitem{1} Reed-Simon: {\it Methods of Modern Mathematical Physics}. Volume 4. Academic Press, Inc., 1978.
 \end{thebibliography} 
 
 \end{document}
